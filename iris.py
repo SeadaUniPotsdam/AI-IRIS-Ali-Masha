@@ -10,7 +10,7 @@ from scipy import stats
 import statsmodels.api as sm
 from sklearn.preprocessing import MinMaxScaler
 
-O
+
 # URL of the Iris dataset
 url = "https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data"
 
@@ -60,4 +60,32 @@ for x in columns:
     # Step 5: Normalize the column to [0, 1]
     df[x] = (df[x] - df[x].min()) / (df[x].max() - df[x].min())
 
+print("\n")
 print(df.head())
+print("\n")
+
+
+#look at how u can do the following with the data you scraped
+X = df.iloc[:, :-1]
+y = df.iloc[:, -1]
+
+print("Feature Statistiken:")
+print(X.describe())
+
+print("\nTarget-Verteilung:")
+print(y.value_counts()) #change this since this function is probably not in pandas idea count uniques and show us what has what type things
+
+y_encoded = encoder.fit_transform(y) 
+
+X_train, X_test, y_train, y_test = train_test_split(X, y_encoded, test_size=0.2, random_state=42) 
+
+
+#creating the training and test datasets
+X_train.to_csv('iris_training_values.csv', index=False)
+X_test.to_csv('iris_testing_values.csv', index=False)
+
+y_train.to_csv('iris_training_target.csv', index=False)
+y_test.to_csv('iris_testing_target.csv', index=False)
+
+#getting the first row to be used in the activation of the OLS and the ANN model 
+activation = df[1,0] #make sure that this acc works
