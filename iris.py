@@ -9,7 +9,7 @@ import numpy as np
 from scipy import stats
 import statsmodels.api as sm
 from sklearn.preprocessing import MinMaxScaler
-
+from sklearn.preprocessing import LabelEncoder
 
 # URL of the Iris dataset
 url = "https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data"
@@ -75,17 +75,24 @@ print(X.describe())
 print("\nTarget-Verteilung:")
 print(y.value_counts()) #change this since this function is probably not in pandas idea count uniques and show us what has what type things
 
+encoder = LabelEncoder()
 y_encoded = encoder.fit_transform(y) 
 
 X_train, X_test, y_train, y_test = train_test_split(X, y_encoded, test_size=0.2, random_state=42) 
 
 
 #creating the training and test datasets
-X_train.to_csv('iris_training_values.csv', index=False)
-X_test.to_csv('iris_testing_values.csv', index=False)
+X_train_df = pd.DataFrame(X_train)
+X_train_df.to_csv('iris_training_values.csv', index=False)
+X_test_df = pd.DataFrame(X_test)
+X_test_df.to_csv('iris_testing_values.csv', index=False)
 
-y_train.to_csv('iris_training_target.csv', index=False)
-y_test.to_csv('iris_testing_target.csv', index=False)
+y_train_df = pd.DataFrame(y_train)
+y_train_df.to_csv('iris_training_target.csv', index=False)
+y_test_df = pd.DataFrame(y_test)
+y_test_df.to_csv('iris_testing_target.csv', index=False)
 
 #getting the first row to be used in the activation of the OLS and the ANN model 
-activation = df[1,0] #make sure that this acc works
+activation = df.sample(n=1)
+print(activation)
+activation.to_csv('iris_activation.csv', index=False)
