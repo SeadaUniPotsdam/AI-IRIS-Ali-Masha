@@ -7,7 +7,6 @@ from sklearn.model_selection import train_test_split
 import re
 import numpy as np
 from scipy import stats
-import statsmodels.api as sm
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.preprocessing import LabelEncoder
 
