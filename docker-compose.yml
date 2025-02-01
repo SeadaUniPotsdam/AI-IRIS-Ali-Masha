@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  learning_base: 
+    container_name: learningBase_IRIS
+    build:
+      context: ./learning_base
+      dockerfile: Dockerfile
+    volumes:
+      - ai_system:/tmp/learningBase
+
+  activation_base:
+    container_name: activationBase_IRIS
+    build:
+      context: ./activation_base
+      dockerfile: Dockerfile
+    volumes:
+      - ai_system:/tmp/activationBase
+
+volumes:
+  ai_system:
