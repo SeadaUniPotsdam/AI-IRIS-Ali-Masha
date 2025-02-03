@@ -16,6 +16,20 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ai_system:/tmp/activationBase
+  knowledge_base:
+    container_name: knowledgeBase_IRIS
+    build: 
+      context: ./knowledge_base
+      dockerfile: Dockerfile
+    volumes:
+      -ai_system:/tmp/knowledgeBase
+  code_base:
+    container_name: codeBase_IRIS
+    build: 
+      context: ./code_base
+      dockerfile: Dockerfile
+    volumes:
+      -ai_system:/tmp/code_base
 
 volumes:
   ai_system:
