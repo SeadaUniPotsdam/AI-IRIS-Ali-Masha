@@ -37,6 +37,8 @@ df = pd.DataFrame(data, columns=columns)
 # Display first few rows
 print(df.head())
 
+df.to_csv('joint_data_collecGon.csv', index=False)
+
 columns = ["sepal_length", "sepal_width", "petal_length", "petal_width"]
 
 #typecasting and normalizing and cleaning
