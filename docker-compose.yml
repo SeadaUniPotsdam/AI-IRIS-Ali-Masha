@@ -8,7 +8,6 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ai_system:/tmp/learningBase
-
   activation_base:
     container_name: activationBase_IRIS
     build:
@@ -22,14 +21,14 @@ services:
       context: ./knowledge_base
       dockerfile: Dockerfile
     volumes:
-      -ai_system:/tmp/knowledgeBase
+      - ai_system:/tmp/knowledgeBase  # Fixed spacing issue
   code_base:
     container_name: codeBase_IRIS
     build: 
       context: ./code_base
       dockerfile: Dockerfile
     volumes:
-      -ai_system:/tmp/code_base
-
+      - ai_system:/tmp/code_base  # Fixed spacing issue
 volumes:
   ai_system:
+
